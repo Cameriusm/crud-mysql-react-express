@@ -54,9 +54,14 @@ function App() {
 
         {movieReviewList.map((value) => {
           return (
-            <h1>
-              MovieName: {value.movieName} | Movie Review: {value.movieReview}
-            </h1>
+            <div className="card">
+              <h1>{value.movieName}</h1>
+              <p>{value.movieReview}</p>
+
+              <button>Delete</button>
+              <input type="text" id="updateInput" />
+              <button>Update</button>
+            </div>
           );
         })}
       </div>

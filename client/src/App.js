@@ -5,7 +5,7 @@ import Axios from 'axios';
 function App() {
   const [movieName, setMovieName] = useState('');
   const [review, setReview] = useState('');
-  const [movieReviwList, setMovieList] = useState([]);
+  const [movieReviewList, setMovieList] = useState([]);
 
   useEffect(() => {
     Axios.get('http://localhost:3001/api/get').then((response) => {
@@ -17,9 +17,15 @@ function App() {
     Axios.post('http://localhost:3001/api/insert', {
       movieName: movieName,
       movieReview: review,
-    }).then(() => {
-      alert('successful insert');
     });
+
+    setMovieList([
+      ...movieReviewList,
+      {
+        movieName: movieName,
+        movieReview: review,
+      },
+    ]);
   };
 
   return (
@@ -46,7 +52,7 @@ function App() {
 
         <button onClick={submitReview}>Submit</button>
 
-        {movieReviwList.map((value) => {
+        {movieReviewList.map((value) => {
           return (
             <h1>
               MovieName: {value.movieName} | Movie Review: {value.movieReview}
